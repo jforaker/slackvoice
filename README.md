@@ -5,8 +5,8 @@ A simple app written in node.js (and, marginally designed to run on Heroku) to p
 ### Tech
 
 * [Express.js]
-* [Socket.io] - awesome web-based text editor
-* [Slack API] - a super fast port of Markdown to JavaScript
+* [Socket.io]
+* [Slack API]
 
 ### Installation
 
@@ -15,7 +15,7 @@ $ npm install
 ```
 
 ```sh
-$ SLACK_URL=your Slack incoming webhook url
+$ export SLACK_URL=your Slack incoming webhook url
 $ node server.js
 ```
 
