@@ -2,10 +2,16 @@
 
 A simple app written in node.js to play sound effects on different webhook triggers to any other machine running the same webpage.
 
-Example slash command:
+Example slash command for voice audio output:
 
 ```sh
 /sound speak Hello world
+```
+
+OR just a sound effect (cha-ching):
+
+```sh
+/sound money
 ```
 
 ### Tech
