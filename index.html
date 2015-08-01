@@ -1,0 +1,167 @@
+<html>
+
+<head>
+    <title>Cha Chinger</title>
+    <meta name="robots" content="noindex">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="responsivevoice.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.js"></script>
+    <script src="http://code.jquery.com/jquery-git2.js"></script>
+    <style>
+        body {
+            font-family: 'Lucida Grand', Helvetica, Arial, sans-serif;
+        }
+        #charges {
+            margin: 20px;
+        }
+        .train-ride {
+            margin: 5px;
+        }
+        .play-anything {
+            margin: 5px;
+        }
+        .failed-charge {
+            color: darkRed;
+            margin: 5px;
+        }
+        .successful-charge {
+            color: darkGreen;
+            margin: 5px;
+        }
+        a {
+            display:inline-block;
+            margin:5px;
+            text-decoration: none;
+            color:#333333;
+        }
+        a:hover {
+            text-decoration: underline;
+            color:black;
+        }        
+        input {
+            border : solid 2px #DDDDDD;
+            border-radius : 3px;
+            moz-border-radius : 3px;
+            font-size : 20px;
+            color : #333333;
+            padding : 5px 10px;
+            background : whiteSmoke;
+        }
+        input[type=text] {
+            width: 320px;
+        }
+    </style>
+    <script type="text/javascript">
+        var host = location.origin.replace(/^http/, 'ws');
+        var socket = io(host);
+        socket.on('money', function (charge) {
+            document.getElementById('cash_register').play();
+        });
+
+        socket.on('denied', function (charge) {
+            document.getElementById('denied').play();
+        });
+
+        socket.on('trainDone', function (charge) {
+            document.getElementById('choochoo').play();
+        });
+
+        socket.on('trainCrashed', function (data) {
+            document.getElementById('crashed').play();
+        });
+
+        socket.on('downtime', function (environment) {
+            document.getElementById('siren').play();
+            setTimeout(speak(environment+ " is down - I repeat - "+environment+" is down.", "UK English Female"), 10000);
+        });
+
+        socket.on('applause', function (data) {
+            document.getElementById('applause').play();
+        });
+
+        socket.on('deploy', function (data) {
+            setTimeout(function() { location.reload(); }, 30000);
+        });
+
+        socket.on('ten', function (data) {
+            document.getElementById('ten').play();
+        });
+
+        socket.on('rimShot', function (data) {
+            document.getElementById('rimShot').play();            
+        });
+
+        socket.on('liveChat', function (data) {
+            document.getElementById('liveChat').play();
+        });
+
+        socket.on('refresh', function (data) {
+            location.reload();
+        });
+
+        socket.on('speak', function (text, voice) {
+            speak(text, voice);
+        });
+
+        // refresh page every 5 minutes
+        setTimeout(function() {
+            location.reload();
+        }, 3600000);
+
+        var speak = function(text, voice) {
+            responsiveVoice.speak(text, voice);
+        };
+
+    </script>
+</head>
+
+<body>
+
+        <br>
+        <br>
+        <br>
+
+        <h1>Choo Choo: <audio id="choochoo" preload="auto" controls="yes">
+          <source src="audio/train_whistle.mp3" type="audio/mpeg">
+        </audio></h1>
+        <h1>Crash: <audio id="crashed" preload="auto" controls="yes">
+          <source src="audio/crash.wav" type="audio/wave">
+          <source src="audio/crash.mp3" type="audio/mpeg">
+        </audio></h1>
+        <h1>Siren: <audio id="siren" preload="auto" controls="yes">
+          <source src="audio/siren.wav" type="audio/wave">
+          <source src="audio/siren.mp3" type="audio/mpeg">
+        </audio></h1>
+        <h1>Cha-ching: <audio id="cash_register" preload="auto" controls="yes">
+          <source src="audio/cash_register.wav" type="audio/wave">
+          <source src="audio/cash_register.mp3" type="audio/mpeg">
+        </audio></h1>
+        <h1>Rim-shot: <audio id="rimShot" preload="auto" controls="yes">
+          <source src="audio/rim-shot.wav" type="audio/wave">
+          <source src="audio/rim-shot.mp3" type="audio/mpeg">
+        </audio></h1>
+        <h1>Money Money: <audio id="money_money" preload="auto" controls="yes">
+          <source src="audio/money.wav" type="audio/wave">
+          <source src="audio/money.mp3" type="audio/mpeg">
+        </audio></h1>
+        <h1>Fail: <audio id="denied" preload="auto" controls="yes">
+          <source src="audio/denied.wav" type="audio/wave">
+          <source src="audio/denied.mp3" type="audio/mpeg">
+        </audio></h1>
+        <h1>Applause: <audio id="applause" preload="auto" controls="yes">
+          <source src="audio/applause.mp3" type="audio/mpeg">
+        </audio></h1>
+        <h1>Ten: <audio id="ten" preload="auto" controls="yes">
+          <source src="audio/ten_safe.wav" type="audio/wave">
+          <source src="audio/ten_safe.mp3" type="audio/mpeg">
+        </audio></h1>
+        <h1>Live Chat: <audio id="liveChat" preload="auto" controls="yes">
+            <source src="audio/live_chat.mp3" type="audio/mpeg">
+        </audio></h1>
+
+    <br>
+
+</body>
+
+</html>
