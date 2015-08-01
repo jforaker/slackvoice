@@ -34,3 +34,4 @@ $ node server.js
 Open in browser with:
 http://localhost:8080
 
+Forked from [https://github.com/brandfolder/slackbot-voice](https://github.com/brandfolder/slackbot-voice)
