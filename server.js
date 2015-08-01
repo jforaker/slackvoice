@@ -11,9 +11,8 @@ app.use(express.static(__dirname));
 app.use(bodyParser.json({limit: '50mb'}));
 
 app.get('/play', function (request, response) {
-    inspect(request.query, 'req');
-
-    var slacker = new Slack(request.channel_id);
+    inspect(request.query, 'request');
+    var slacker = new Slack(request.query.channel_id);
     slacker.postMessage(request.query.text, io);
 });
 
