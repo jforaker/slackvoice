@@ -1,6 +1,6 @@
 {
-  "name": "payments-webhook-node",
-  "version": "0.0.5",
+  "name": "slackvoice",
+  "version": "0.0.1",
   "dependencies": {
     "body-parser": "latest",
     "dotenv": "^1.2.0",

@@ -48,13 +48,13 @@ Slack.prototype.postMessage = function (query, io) {
 
     var callBack = function (error, response, body) {
         if (error) {
-            inspect(error, 'error slack');
+            inspect(error, 'error slack:');
             def.reject({status: 500, data: {error: error.message}});
         } else if (response.statusCode == 200) {
-            inspect(body, 'Slack success body');
+            inspect(body, 'Slack success body:');
             def.resolve(body);
         } else {
-            inspect(body, 'Slack Error body');
+            inspect(body, 'Slack Error body:');
             def.reject(body);
         }
     };
