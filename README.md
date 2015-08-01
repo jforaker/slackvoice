@@ -1,6 +1,12 @@
 # Slackvoice
 
-A simple app written in node.js (and, marginally designed to run on Heroku) to play sound effects on different webhook triggers to any other machine running the same webpage.
+A simple app written in node.js to play sound effects on different webhook triggers to any other machine running the same webpage.
+
+Example slash command:
+
+```sh
+/sound speak Hello world
+```
 
 ### Tech
 
