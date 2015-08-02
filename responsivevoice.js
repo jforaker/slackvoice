@@ -1,10 +1,3 @@
-//Look for other responsivevoice instances
-/*if (window.parent != null) {
-    var iframes = window.parent.document.getElementsByTagName('iframe');
-    for (var i = 0; i < iframes.length; i++) {
-        //iframes[i].style.width = "300px"
-    }
-}*/
 
 if (typeof responsiveVoice != 'undefined') {
     console.log('ResponsiveVoice already loaded');
@@ -256,7 +249,7 @@ if (typeof responsiveVoice != 'undefined') {
             }
             
             self.Dispatch("OnLoad");
-        }
+        };
 
         self.systemVoicesReady = function(v) {
             self.systemvoices = v;
@@ -265,7 +258,7 @@ if (typeof responsiveVoice != 'undefined') {
 
             if (self.OnVoiceReady != null)
                 self.OnVoiceReady.call();            
-        }
+        };
 
         self.enableFallbackMode = function() {
 
@@ -278,7 +271,7 @@ if (typeof responsiveVoice != 'undefined') {
                 self.OnVoiceReady.call();
 
 
-        }
+        };
 
 
         self.getVoices = function () {
@@ -293,7 +286,7 @@ if (typeof responsiveVoice != 'undefined') {
 
             return v;
 
-        }
+        };
 
 
         self.speak = function (text, voicename, parameters) {
@@ -482,7 +475,7 @@ if (typeof responsiveVoice != 'undefined') {
 
             }
 
-        }
+        };
 
         self.startTimeout = function (text, callback) {
             
@@ -500,7 +493,7 @@ if (typeof responsiveVoice != 'undefined') {
            
             self.timeoutId = setTimeout(callback, multiplier * 1000 * (60 / self.WORDS_PER_MINUTE) * text.split(/\s+/).length); //avg 140 words per minute read time            
             //console.log("Timeout " + self.timeoutId + " started: " + (multiplier * 1000 * (60 / self.WORDS_PER_MINUTE) * text.split(/\s+/).length).toString());            
-        }
+        };
 
         self.checkAndCancelTimeout = function () {
             if (self.timeoutId != null) {
@@ -508,7 +501,7 @@ if (typeof responsiveVoice != 'undefined') {
                 clearTimeout(self.timeoutId);
                 self.timeoutId = null;
             }
-        }
+        };
 
         self.speech_timedout = function() {
             //console.log("Speech cancelled: Timeout " + self.timeoutId + " ended");
@@ -517,7 +510,7 @@ if (typeof responsiveVoice != 'undefined') {
             //if (!self.iOS) //On iOS, cancel calls msg.onend 
                 self.speech_onend();
             
-        }
+        };
 
         self.speech_onend = function () {
             self.checkAndCancelTimeout();
@@ -536,7 +529,7 @@ if (typeof responsiveVoice != 'undefined') {
                 
             } 
 
-        }
+        };
 
         self.speech_onstart = function () {
             //if (!self.iOS)
@@ -549,7 +542,7 @@ if (typeof responsiveVoice != 'undefined') {
                 self.msgparameters.onstart();
             }
 
-        }
+        };
 
 
 
@@ -570,15 +563,15 @@ if (typeof responsiveVoice != 'undefined') {
 
                 
                 var audio = self.fallback_audio;
-                setTimeout(function(){audio.playbackRate = self.fallback_playbackrate;},50)
+                setTimeout(function(){audio.playbackRate = self.fallback_playbackrate;},50);
                 audio.onloadedmetadata = function() {
                     audio.play();
                     audio.playbackRate = self.fallback_playbackrate;
-                }                
+                };
                 self.fallback_audio.play();
                 self.fallback_audio.addEventListener('ended', self.fallback_finishPart);
             }
-        }
+        };
 
         self.fallback_finishPart = function (e) {
 
@@ -595,7 +588,7 @@ if (typeof responsiveVoice != 'undefined') {
 
             }
 
-        }
+        };
 
 
         self.cancel = function () {
@@ -610,14 +603,14 @@ if (typeof responsiveVoice != 'undefined') {
                 speechSynthesis.cancel();
 
             }
-        }
+        };
 
 
         self.voiceSupport = function () {
 
             return ('speechSynthesis' in window);
 
-        }
+        };
 
         self.OnFinishedPlaying = function (event) {
             //console.log("OnFinishedPlaying");
@@ -626,7 +619,7 @@ if (typeof responsiveVoice != 'undefined') {
                     self.msgparameters.onend();
             }
 
-        }
+        };
 
         //Set default voice to use when no voice name is supplied to speak()
         self.setDefaultVoice = function (voicename) {
@@ -637,7 +630,7 @@ if (typeof responsiveVoice != 'undefined') {
                 self.default_vr = vr;
             }
 
-        }
+        };
 
         //Map responsivevoices to system voices
         self.mapRVs = function() {
@@ -678,7 +671,7 @@ if (typeof responsiveVoice != 'undefined') {
             }
 
 
-        }
+        };
 
 
         //Look for the voice in the system that matches the one in our collection
@@ -692,7 +685,7 @@ if (typeof responsiveVoice != 'undefined') {
 
             return null;
 
-        }
+        };
 
         self.getSystemVoice = function(name) {
 
@@ -706,7 +699,7 @@ if (typeof responsiveVoice != 'undefined') {
 
             return null;
 
-        }
+        };
 
         self.getResponsiveVoice = function(name) {
 
@@ -718,7 +711,7 @@ if (typeof responsiveVoice != 'undefined') {
 
             return null;
 
-        }
+        };
         
         self.Dispatch = function(name) {
             
@@ -730,7 +723,7 @@ if (typeof responsiveVoice != 'undefined') {
                 }
                 
             }
-        }
+        };
         
         self.AddEventListener = function(name,callback) {
             if (self.hasOwnProperty(name + "_callbacks")) {
@@ -738,7 +731,7 @@ if (typeof responsiveVoice != 'undefined') {
             }else{
                 console.log("RV: Event listener not found: " + name);
             }
-        }
+        };
         
         
         //Event to initialize speak on iOS
@@ -747,7 +740,7 @@ if (typeof responsiveVoice != 'undefined') {
                 self.speak(" ");
                 self.iOS_initialized = true;
             }
-        }
+        };
         
         
         
@@ -764,6 +757,6 @@ if (typeof responsiveVoice != 'undefined') {
         }        
         
 
-    }
+    };
     var responsiveVoice = new ResponsiveVoice();
 }

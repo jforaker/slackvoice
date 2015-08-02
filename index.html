@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Cha Chinger</title>
+    <title>Slackvoice</title>
     <meta name="robots" content="noindex">
     <script src="/socket.io/socket.io.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -59,11 +59,6 @@
         socket.on('speak', function (text, voice) {
             speak(text, voice);
         });
-
-        // refresh page every 5 minutes
-        setTimeout(function() {
-            location.reload();
-        }, 3600000);
 
         var speak = function(text, voice) {
             responsiveVoice.speak(text, voice);
