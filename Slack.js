@@ -15,12 +15,12 @@ Slack.prototype.postMessage = function (query, io) {
 
     inspect(query, 'query Slack.postMessage()');
 
-    var str = _.trim(query).split(" ");
+    var str = _.trim(query).split(' ');
     var text, arr;
     if(str[0] === 'speak'){
         arr = _.without(str, str[0]);
         text = _.map(arr, _.identity).join(' ');
-        io.emit('speak', text, "US English Female");
+        io.emit('speak', text, 'US English Female');
 
     } else {
         io.emit(query);
@@ -31,12 +31,12 @@ Slack.prototype.postMessage = function (query, io) {
             channel: _that.channel,
             "attachments": [
                 {
-                    "fallback": "Required text summary of the attachment that is shown by clients that understand attachments but choose not to show them.",
-                    "color": "#e74c3c",
-                    "fields": [
+                    'fallback': 'Required text summary of the attachment that is shown by clients that understand attachments but choose not to show them.',
+                    'color': '#e74c3c',
+                    'fields': [
                         {
-                            "title": "you got played. " + query,
-                            "short": true
+                            'title': 'you got played. ' + query,
+                            'short': true
                         }
                     ]
                 }

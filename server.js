@@ -17,7 +17,7 @@ app.get('/play', function (request, response) {
 });
 
 io.on('connection', function (socket) {
-    console.log("Connected!");
+    console.log('Connected!');
 });
 
 server.listen(process.env.PORT || 8080);
