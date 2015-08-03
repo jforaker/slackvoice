@@ -11,6 +11,7 @@
     <script type="text/javascript">
         var host = location.origin.replace(/^http/, 'ws');
         var socket = io(host);
+
         socket.on('money', function (charge) {
             document.getElementById('cash_register').play();
         });
@@ -19,11 +20,11 @@
             document.getElementById('denied').play();
         });
 
-        socket.on('trainDone', function (charge) {
+        socket.on('traindone', function (charge) {
             document.getElementById('choochoo').play();
         });
 
-        socket.on('trainCrashed', function (data) {
+        socket.on('traincrashed', function (data) {
             document.getElementById('crashed').play();
         });
 
@@ -36,19 +37,15 @@
             document.getElementById('applause').play();
         });
 
-        socket.on('deploy', function (data) {
-            setTimeout(function() { location.reload(); }, 30000);
-        });
-
         socket.on('ten', function (data) {
             document.getElementById('ten').play();
         });
 
-        socket.on('rimShot', function (data) {
-            document.getElementById('rimShot').play();            
+        socket.on('rimshot', function (data) {
+            document.getElementById('rimShot').play();
         });
 
-        socket.on('liveChat', function (data) {
+        socket.on('livechat', function (data) {
             document.getElementById('liveChat').play();
         });
 

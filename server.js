@@ -4,8 +4,9 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var bodyParser = require('body-parser');
-var inspect = require('eyespect').inspector();
+var inspect = require('eyes').inspector({maxLength: 12048});
 var Slack = require('./Slack');
+var port = process.env.PORT || 8080;
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json({limit: '50mb'}));
@@ -17,7 +18,8 @@ app.get('/play', function (request, response) {
 });
 
 io.on('connection', function (socket) {
-    console.log('Connected!');
+    inspect('socket connected!');
 });
 
-server.listen(process.env.PORT || 8080);
+server.listen(port);
+inspect(port, 'Server started on ');
