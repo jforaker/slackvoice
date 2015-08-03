@@ -27,7 +27,7 @@ $ npm install
 ```
 
 ```sh
-$ export SLACK_URL=your Slack incoming webhook url
+$ export SLACK_URL=your_Slack_incoming_webhook_url
 $ node server.js
 ```
 
